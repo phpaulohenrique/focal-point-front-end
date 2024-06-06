@@ -1,0 +1,31 @@
+
+.checkboxRoot {
+  background-color: #FFF;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #B0BBD1;
+  
+}
+
+.checkboxRootChecked {
+
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #A0DCF6;
+  border: 1px solid #0796D3
+  
+}
+
+.checkboxIndicator {
+  display: inline-block;
+  margin-top: 3px;
+}
+

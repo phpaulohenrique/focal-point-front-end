@@ -1,4 +1,7 @@
 
+
+
+
 .header{
   width: 100%;
   margin: 0 auto;
@@ -12,7 +15,7 @@
 .header div{
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .welcomeMessage{
@@ -23,4 +26,31 @@
 .date{
   color: var(--light-gray);
   font-size: 1.6rem;
+}
+
+
+@media (max-width: 768px) {
+  .header{
+  height: 13.8rem;
+  margin: 0;
+
+  }
+  .header div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.8rem;
+
+  }
+
+  .welcomeMessage{
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 770px) and (max-width: 1350px) {
+  .header {
+    padding-inline: 2rem;
+  }
 }

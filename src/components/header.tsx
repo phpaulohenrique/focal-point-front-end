@@ -4,12 +4,29 @@ import Image from 'next/image'
 import Logo from '@/assets/logo.svg'
 
 export function Header() {
+    function formatDate(date: Date) {
+        let formattedDate = date.toLocaleDateString('pt-BR', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        })
+        // remove o  "-feira"
+        formattedDate = formattedDate.replace(/-feira/g, '')
+        // deixa  a primeira letra em uppercase
+        formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)
+
+        return formattedDate
+    }
+
+    const todayDate = new Date()
+    const formattedDate = formatDate(todayDate)
     return (
         <header className={styles.header}>
             <div>
                 <Image src={Logo} alt="Focal Point" width={150} />
                 <span className={styles.welcomeMessage}>Bem-vindo de volta, Marcus</span>
-                <span className={styles.date}>Segunda, 22 de dezembro de 2024</span>
+                <span className={styles.date}>{formattedDate}</span>
             </div>
         </header>
     )

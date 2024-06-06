@@ -1,0 +1,115 @@
+.dialogOverlay {
+    background-color: #FFFFFFC8;
+    backdrop-filter: blur(2px);
+    position: fixed;
+    inset: 0;
+    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    
+  }
+  
+  .dialogContent {
+    background-color: white;
+    border-radius: 1.6rem;
+    box-shadow: 0px 24px 48px -12px #1018282E;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    max-width: 450px;
+    padding: 3.2rem;
+    animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .dialogContent:focus {
+    outline: none;
+  }
+  
+  .dialogTitle {
+    font-weight: 500;
+    font-size: 2.4rem;
+    line-height: 29.04px;
+    letter-spacing: -0.02em;
+  }
+
+  
+  .fieldset {
+    display: flex;
+    gap: 0.8rem;
+    flex-direction: column;
+    margin-top: 3.2rem;
+    border: none;
+  }
+  
+  .label {
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    
+  }
+  
+  .input {
+    height: 5.1rem;
+    padding: 1.6rem;
+    border-radius: 0.8rem;
+    border: 1px solid #D7DDE9;
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .input:focus {
+    box-shadow: 0 0 0 2px var(--violet-8);
+  }
+
+  .containerAction {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 1.6rem;
+    flex-direction: row;
+    margin-top: 3.2rem;
+    /* justify-content: space-between; */
+  }
+  
+  @keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes contentShow {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+
+
+  @media (max-width: 768px) {
+  .dialogContent {
+    width: 100vw;
+    height: 100vh;
+    padding: 2.4rem;
+
+  }
+
+  .containerAction {
+
+    display: flex;
+    width: 100%;
+    gap: 1.6rem;
+    flex-direction: column-reverse;
+    margin-top: 3.2rem;
+  }
+  
+}
