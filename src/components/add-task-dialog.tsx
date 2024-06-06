@@ -1,10 +1,11 @@
 import styles from './add-task-dialog.module.css'
 
 import * as Dialog from '@radix-ui/react-dialog'
-import { Button } from './button'
+import Button from './button'
 import { FormEvent, useState } from 'react'
 import { createTask } from '@/api/create-task'
 import { Task } from '@/models/task'
+import { toast } from 'sonner'
 
 interface AddTaskDialogProps {
     onAddNewTaskToList: (task: Task) => void
@@ -18,7 +19,6 @@ export function AddTaskDialog({ onAddNewTaskToList }: AddTaskDialogProps) {
     const handleAddNewTask = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        // console.log(taskTitle)
         setIsLoading(true)
         const task = await createTask({
             completed: false,
@@ -26,9 +26,10 @@ export function AddTaskDialog({ onAddNewTaskToList }: AddTaskDialogProps) {
         })
         setIsLoading(false)
         if (task == null) {
+            toast.error('Ops, ocorreu um erro ao cadastrar a tarefa.')
             return
-            // TODO: erro
         }
+        toast.success('Tarefa cadastrada com sucesso!')
 
         setTaskTitle('')
         onAddNewTaskToList(task)
@@ -65,9 +66,8 @@ export function AddTaskDialog({ onAddNewTaskToList }: AddTaskDialogProps) {
                         <Dialog.Close asChild>
                             <Button type="button" title="Cancelar" variant="secondary" />
                         </Dialog.Close>
-                        {/* <Dialog.Close asChild> */}
+
                         <Button title="Adicionar" disabled={isLoading} form="form" type="submit" />
-                        {/* </Dialog.Close> */}
                     </div>
                 </Dialog.Content>
             </Dialog.Portal>

@@ -80,6 +80,14 @@
 
 }
 
+.message{
+  height: 6rem;
+  text-align: center;
+  color: #343434;
+  font-size: 1.5rem;
+
+}
+
 
 @media (max-width: 768px) {
   .container{

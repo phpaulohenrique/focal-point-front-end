@@ -8,6 +8,7 @@ import { updateTask } from '@/api/update-task'
 import { AddTaskDialog } from '@/components/add-task-dialog'
 import { DeleteTaskDialog } from '@/components/delete-task-dialog'
 import { CustomCheckbox } from '@/components/checkbox'
+import { toast } from 'sonner'
 
 export default function Home() {
     const [tasks, setTasks] = useState<Array<Task>>([])
@@ -19,7 +20,7 @@ export default function Home() {
             const response = await api.get('/tasks')
             setTasks(response.data)
         } catch (error) {
-            console.error('Error fetching tasks:', error)
+            toast.error('Ops, ocorreu um erro ao carregar as tarefas.')
         }
     }
 
@@ -29,14 +30,16 @@ export default function Home() {
 
     const handleUpdateTask = async (selectedTask: Task) => {
         const taskIndex = tasks.findIndex((task) => task.id === selectedTask.id)
-        // selectedTask.completed = !selectedTask.completed
+
         const updatedTask = await updateTask(selectedTask)
-        console.log(updatedTask)
+        if (updatedTask === null) {
+            toast.error('Ops, ocorreu um erro ao atualizar a tarefa.')
+            getTasks()
+        }
 
         if (taskIndex > -1 && updatedTask) {
             const updatedTasks = [...tasks]
-            // updatedTasks[taskIndex].completed = !updatedTasks[taskIndex].completed
-            // updatedTasks[taskIndex].completed = task.completed
+
             updatedTasks[taskIndex] = updatedTask
             setTasks(updatedTasks)
         }
@@ -63,16 +66,7 @@ export default function Home() {
                             {pendingTasks.map((task) => (
                                 <li className={styles.taskItem} key={task.id}>
                                     <div>
-                                        {/* <input
-                                            type="checkbox"
-                                            id={`task-${task.id}`}
-                                            name="tarefa"
-                                            onClick={() =>
-                                                handleUpdateTask({ ...task, completed: true })
-                                            }
-                                        /> */}
                                         <CustomCheckbox
-                                            // type="checkbox"
                                             id={`task-${task.id}`}
                                             key={task.id}
                                             name="tarefa"
@@ -89,6 +83,10 @@ export default function Home() {
                                     />
                                 </li>
                             ))}
+
+                            {pendingTasks.length === 0 && (
+                                <span className={styles.message}>Nenhuma tarefa pendente</span>
+                            )}
                         </ul>
 
                         <strong className={styles.tasksTitle}>Tarefas finalizadas</strong>
@@ -97,26 +95,13 @@ export default function Home() {
                             {finishedTasks.map((task) => (
                                 <li className={styles.taskItem} key={task.id}>
                                     <div>
-                                        {/* <input
-                                            type="checkbox"
-                                            id={`task-${task.id}`}
-                                            name="tarefa"
-                                            defaultChecked
-                                            onChange={() =>
-                                                handleUpdateTask({ ...task, completed: false })
-                                            }
-                                        /> */}
                                         <CustomCheckbox
-                                            // type="checkbox"
                                             key={task.id}
                                             defaultChecked
                                             id={`task-${task.id}`}
                                             name="tarefa"
-                                            onClick={
-                                                () =>
-                                                    handleUpdateTask({ ...task, completed: false })
-                                                // onChange={() =>
-                                                //     handleUpdateTask({ ...task, completed: true })
+                                            onClick={() =>
+                                                handleUpdateTask({ ...task, completed: false })
                                             }
                                         />
                                         <label
@@ -135,6 +120,10 @@ export default function Home() {
                                     />
                                 </li>
                             ))}
+
+                            {finishedTasks.length === 0 && (
+                                <span className={styles.message}>Nenhuma tarefa finalizada</span>
+                            )}
                         </ul>
                     </div>
 

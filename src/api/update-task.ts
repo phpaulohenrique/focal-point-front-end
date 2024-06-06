@@ -6,7 +6,7 @@ export const updateTask: (task: Task) => Promise<Task | null> = async (task) => 
         const response = await api.put<Task>(`task/${task.id}`, task)
         return response.data
     } catch (error) {
-        console.error('Error updating task:', error)
+        console.error(error)
         return null
     }
 }

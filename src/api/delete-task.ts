@@ -5,7 +5,8 @@ export const deleteTask: (task: Task) => Promise<undefined | null> = async (task
     try {
         await api.delete(`task/${task.id}`)
     } catch (error) {
-        console.error('Error deleting task:', error)
+        console.error(error)
+
         return null
     }
 }

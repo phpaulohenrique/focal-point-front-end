@@ -2,11 +2,12 @@ import TrashIcon from '@/assets/trash.svg'
 import Image from 'next/image'
 import styles from './delete-task-dialog.module.css'
 import * as Dialog from '@radix-ui/react-dialog'
-import { Button } from './button'
+import Button from './button'
 import { useState } from 'react'
 
 import { Task } from '@/models/task'
 import { deleteTask } from '@/api/delete-task'
+import { toast } from 'sonner'
 
 interface AddTaskDialogProps {
     onRemoveTaskFromList: (task: Task) => void
@@ -24,9 +25,11 @@ export function DeleteTaskDialog({ onRemoveTaskFromList, selectedTask }: AddTask
 
         // console.log(resp)
         if (resp === null) {
+            toast.error('Ops, ocorreu um erro ao deletar a tarefa.')
             return
         }
 
+        toast.success('Tarefa deletada com sucesso!')
         onRemoveTaskFromList(selectedTask)
         setOpen(false)
     }

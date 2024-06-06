@@ -10,7 +10,7 @@ export function CustomCheckbox(props: CheckboxProps) {
     const className = styles[props.defaultChecked ? 'checkboxRootChecked' : 'checkboxRoot']
 
     return (
-        <Checkbox.Checkbox onCheckedChange={() => props.onClick}>
+        <Checkbox.Checkbox onCheckedChange={() => props.onClick} asChild>
             <Checkbox.Root className={className} {...props} id="c1">
                 <Checkbox.Indicator className={styles.checkboxIndicator}>
                     <Image src={CheckIcon} alt="Tarefa finalizada" />

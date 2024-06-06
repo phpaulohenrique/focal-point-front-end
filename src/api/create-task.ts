@@ -8,7 +8,7 @@ export const createTask: (task: TaskCreateType) => Promise<Task | null> = async 
         const response = await api.post<Task>(`tasks`, task)
         return response.data
     } catch (error) {
-        console.error('Error updating task:', error)
+        console.error(error)
         return null
     }
 }

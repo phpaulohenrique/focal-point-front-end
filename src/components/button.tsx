@@ -1,16 +1,19 @@
-import React, { ComponentProps } from 'react'
+import React, { forwardRef } from 'react'
 import styles from './button.module.css'
 
-interface ButtonProps extends ComponentProps<'button'> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'secondary' | 'destructive'
     title: string
 }
 
-export function Button({ variant, title, ...rest }: ButtonProps) {
-    const className = styles[variant || 'primary']
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+    const className = styles[props.variant || 'primary']
     return (
-        <button id={styles.buttonBase} className={className} {...rest}>
-            {title}
+        <button ref={ref} id={styles.buttonBase} className={className} {...props}>
+            {props.title}
         </button>
     )
-}
+})
+
+Button.displayName = 'Button'
+export default Button
