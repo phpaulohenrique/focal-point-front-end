@@ -1,10 +1,14 @@
+'use client'
 import styles from './header.module.css'
 import Image from 'next/image'
 
 import Logo from '@/assets/logo.svg'
 
 export function Header() {
-    const userName = localStorage.getItem('userName') || ''
+    let userName = ''
+    if (typeof window !== 'undefined') {
+        userName = localStorage.getItem('userName') ?? ''
+    }
 
     function formatDate(date: Date) {
         let formattedDate = date.toLocaleDateString('pt-BR', {

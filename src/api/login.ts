@@ -1,4 +1,6 @@
+'use client'
 import { api } from '@/lib/apiClient'
+
 import axios from 'axios'
 import { toast } from 'sonner'
 
