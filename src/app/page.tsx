@@ -2,13 +2,14 @@
 import styles from './page.module.css'
 import { Header } from '@/components/header'
 import { useEffect, useState } from 'react'
-import { api } from '@/lib/axios'
+
 import { Task } from '@/models/task'
 import { updateTask } from '@/api/update-task'
 import { AddTaskDialog } from '@/components/add-task-dialog'
 import { DeleteTaskDialog } from '@/components/delete-task-dialog'
 import { CustomCheckbox } from '@/components/checkbox'
 import { toast } from 'sonner'
+import { api } from '@/lib/apiClient'
 
 export default function Home() {
     const [tasks, setTasks] = useState<Array<Task>>([])
@@ -17,7 +18,9 @@ export default function Home() {
 
     const getTasks = async () => {
         try {
-            const response = await api.get('/tasks')
+            const response = await api.get('/tasks', {
+                // withCredentials: true,
+            })
             setTasks(response.data)
         } catch (error) {
             toast.error('Ops, ocorreu um erro ao carregar as tarefas.')

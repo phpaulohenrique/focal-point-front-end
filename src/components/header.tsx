@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Logo from '@/assets/logo.svg'
 
 export function Header() {
+    const userName = localStorage.getItem('userName') || ''
+
     function formatDate(date: Date) {
         let formattedDate = date.toLocaleDateString('pt-BR', {
             weekday: 'long',
@@ -25,7 +27,7 @@ export function Header() {
         <header className={styles.header}>
             <div>
                 <Image src={Logo} alt="Focal Point" width={150} />
-                <span className={styles.welcomeMessage}>Bem-vindo de volta, Marcus</span>
+                <span className={styles.welcomeMessage}>Bem-vindo de volta, {userName}</span>
                 <span className={styles.date}>{formattedDate}</span>
             </div>
         </header>

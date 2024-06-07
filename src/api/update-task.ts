@@ -1,4 +1,4 @@
-import { api } from '@/lib/axios'
+import { api } from '@/lib/apiClient'
 import { Task } from '@/models/task'
 
 export const updateTask: (task: Task) => Promise<Task | null> = async (task) => {
