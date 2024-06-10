@@ -17,9 +17,6 @@ export default function Home() {
     const pendingTasks = tasks.filter((task) => task.completed === false)
 
     const getTasks = async () => {
-        await new Promise((resolve) => {
-            setTimeout(resolve, 3000)
-        })
         try {
             const response = await api.get('/tasks', {
                 // withCredentials: true,

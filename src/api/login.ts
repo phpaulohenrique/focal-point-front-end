@@ -17,7 +17,8 @@ export const login: (login: Login) => Promise<undefined | null> = async (login) 
     } catch (error) {
         console.error(error)
         if (axios.isAxiosError(error)) {
-            toast.error(error.response?.data.message)
+            const msgError = error.response?.data.message ?? 'Erro ao conectar ao servidor.'
+            toast.error(msgError)
         }
         return null
     }

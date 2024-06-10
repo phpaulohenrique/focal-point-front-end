@@ -13,6 +13,8 @@ import { toast } from 'sonner'
 export default function SignUp() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+
     const [password, setPassword] = useState('')
     const router = useRouter()
 
@@ -23,11 +25,15 @@ export default function SignUp() {
             return
         }
 
+        setIsLoading(true)
+
         const resp = await signUp({ email, password, name })
         if (resp === null) {
             return
         }
-        await new Promise((resolve) => setTimeout(resolve, 3000))
+
+        await new Promise((resolve) => setTimeout(resolve, 2000))
+        setIsLoading(false)
         router.push('/login')
     }
 
@@ -84,12 +90,14 @@ export default function SignUp() {
                     <Button
                         title="Cadastre-se"
                         type="submit"
+                        disabled={isLoading}
                         style={{ marginTop: '3.2rem', width: '100%' }}
                     />
 
                     <Link href="/login">
                         <Button
                             title="Login"
+                            type="button"
                             variant="secondary"
                             style={{ marginTop: '1.8rem', width: '100%' }}
                         />

@@ -12,6 +12,7 @@ import { toast } from 'sonner'
 
 export default function Login() {
     const [email, setEmail] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     const [password, setPassword] = useState('')
     const router = useRouter()
 
@@ -22,7 +23,9 @@ export default function Login() {
             return
         }
 
+        setIsLoading(true)
         const resp = await login({ email, password })
+        setIsLoading(false)
 
         if (resp === null) {
             return
@@ -68,6 +71,7 @@ export default function Login() {
 
                     <Button
                         title="Entrar"
+                        disabled={isLoading}
                         type="submit"
                         style={{ marginTop: '3.2rem', width: '100%' }}
                     />
@@ -76,6 +80,7 @@ export default function Login() {
                         <Button
                             title="Cadastre-se"
                             variant="secondary"
+                            type="button"
                             style={{ marginTop: '1.8rem', width: '100%' }}
                         />
                     </Link>
