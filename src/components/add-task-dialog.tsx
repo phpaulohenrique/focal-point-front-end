@@ -19,6 +19,11 @@ export function AddTaskDialog({ onAddNewTaskToList }: AddTaskDialogProps) {
     const handleAddNewTask = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
+        if (!taskTitle) {
+            toast.error('Preencha o nome da tarefa.')
+            return
+        }
+
         setIsLoading(true)
         const task = await createTask({
             completed: false,

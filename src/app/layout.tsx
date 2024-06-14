@@ -7,8 +7,11 @@ import { Toaster } from 'sonner'
 const inter = Inter_Tight({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-    title: 'FocalPoint | Gestão de tarefas do seu dia a dia',
+    title: 'FocalPoint | Gestão de tarefas',
     description: 'Uma aplicação moderna para você gerenciar suas tarefas!',
+    // icons: {
+    //     icon: './fav.png',
+    // },
 }
 
 export default function RootLayout({
@@ -19,6 +22,8 @@ export default function RootLayout({
     return (
         <html lang="pt-BR">
             <Toaster richColors />
+            <link rel="icon" type="image/png" href="/fav.png" />
+
             <body className={inter.className}>{children}</body>
         </html>
     )
