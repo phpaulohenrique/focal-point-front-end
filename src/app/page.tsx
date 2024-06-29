@@ -18,9 +18,7 @@ export default function Home() {
 
     const getTasks = async () => {
         try {
-            const response = await api.get('/tasks', {
-                // withCredentials: true,
-            })
+            const response = await api.get('/tasks', {})
             setTasks(response.data)
         } catch (error) {
             toast.error('Ops, ocorreu um erro ao carregar as tarefas.')

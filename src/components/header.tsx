@@ -30,7 +30,7 @@ export function Header() {
     return (
         <header className={styles.header}>
             <div>
-                <Image src={Logo} alt="Focal Point" width={150} />
+                <Image src={Logo} alt="Focal Point" width={150} height={50} />
                 <span className={styles.welcomeMessage}>Bem-vindo de volta, {userName}</span>
                 <span className={styles.date}>{formattedDate}</span>
             </div>
