@@ -16,6 +16,7 @@
 
 - Vercel (Front-end)
 - Render (Back-end)
+- Render (DB Postgress)
 
 
 
