@@ -26,6 +26,11 @@ git clone https://github.com/phpaulohenrique/focal-point-front-end.git
 npm install
 ```
 
+## Clone back-end
+
+<a href="https://github.com/phpaulohenrique/focal-point-back-end.git" target="_blank">Focal point back-end</a>
+
+
 <h5>Start server</h5>
 
 ```
