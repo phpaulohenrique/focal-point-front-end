@@ -33,6 +33,12 @@ npm install
   npm run dev
 ```
 
+<h5>Fill the .env</h5>
+
+```
+ NEXT_PUBLIC_API_BASE_URL=''
+```
+
 
 
 ## Contribute 🚀
