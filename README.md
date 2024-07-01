@@ -1,4 +1,4 @@
-<h1 align="center">Focal Point</h1>
+<h1 align="center">Focal Point - Front-end</h1>
 
 
 ✔️ Mobile Responsive
